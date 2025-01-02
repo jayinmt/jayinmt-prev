@@ -22,6 +22,7 @@ jobs:
         run: |
           mkdir repos
           cd repos
+          unset GH_TOKEN  # Clear the environment variable
           gh auth login --with-token <<< "${{ secrets.GH_PAT }}"
           gh repo list ${{ github.repository_owner }} --json nameWithOwner -q '.[].nameWithOwner' | while read repo; do
             gh repo clone "$repo" || true
