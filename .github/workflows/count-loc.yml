@@ -48,9 +48,12 @@ jobs:
         run: |
           echo -e "\n### Repository Count" >> README.md
           echo "===============================================================================" >> README.md
-          echo -e "\nPublic Repositories: $(gh repo list ${{ github.repository_owner }} --visibility public --json name --jq length)" >> README.md
-          echo "Private Repositories: $(gh repo list ${{ github.repository_owner }} --visibility private --json name --jq length)" >> README.md
-          echo -e "Total Repositories: $(gh repo list ${{ github.repository_owner }} --json name --jq length)\n" >> README.md
+          PUBLIC_REPOS=$(gh repo list ${{ github.repository_owner }} --visibility public --json name --jq length)
+          PRIVATE_REPOS=$(gh repo list ${{ github.repository_owner }} --visibility private --json name --jq length)
+          TOTAL_REPOS=$((PUBLIC_REPOS + PRIVATE_REPOS))
+          echo -e "\nPublic Repositories: $PUBLIC_REPOS" >> README.md
+          echo "Private Repositories: $PRIVATE_REPOS" >> README.md
+          echo -e "Total Repositories: $TOTAL_REPOS\n" >> README.md
 
       - name: Update report
         run: |
