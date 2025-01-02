@@ -37,7 +37,7 @@ jobs:
           echo "===============================================================================" >> README.md
           echo -e "\n" >> README.md
           # Extract languages and format them
-          tokei ./repos | grep -E '^[[:space:]]*[A-Za-z#]+[[:space:]]' | awk '{print $1}' | grep -v "Total" | grep -v "==" | sort | tr '\n' ',' | sed 's/,/, /g' | sed 's/, $//' >> README.md
+          tokei ./repos | grep -E '^[[:space:]]*[A-Za-z#]+[[:space:]]' | awk '{print $1}' | grep -v "Total" | grep -v "==" | grep -v "Language" | sort | tr '\n' ',' | sed 's/,/, /g' | sed 's/, $//' >> README.md
           echo -e "\n" >> README.md
 
       - name: Update report
