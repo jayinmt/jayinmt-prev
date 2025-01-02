@@ -17,10 +17,12 @@ jobs:
           cargo install tokei
 
       - name: Clone all repositories
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           mkdir repos
           cd repos
-          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+          gh auth login --with-token <<< "${{ secrets.GH_PAT }}"
           gh repo list ${{ github.repository_owner }} --json nameWithOwner -q '.[].nameWithOwner' | while read repo; do
             gh repo clone "$repo" || true
           done
