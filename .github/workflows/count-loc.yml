@@ -25,6 +25,14 @@ jobs:
             gh repo clone "$repo" || true
           done
 
+      - name: Count repositories
+        run: |
+          echo -e "\n### Repository Count" >> README.md
+          echo "===============================================================================" >> README.md
+          echo -e "\nPublic Repositories: $(gh repo list ${{ github.repository_owner }} --visibility public --json name --jq length)" >> README.md
+          echo "Private Repositories: $(gh repo list ${{ github.repository_owner }} --visibility private --json name --jq length)" >> README.md
+          echo -e "Total Repositories: $(gh repo list ${{ github.repository_owner }} --json name --jq length)\n" >> README.md
+
       - name: Count lines of code
         run: |
           echo "# Summary Report" > README.md
