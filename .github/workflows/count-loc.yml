@@ -25,17 +25,9 @@ jobs:
             gh repo clone "$repo" || true
           done
 
-      - name: Count repositories
-        run: |
-          echo -e "\n### Repository Count" >> README.md
-          echo "===============================================================================" >> README.md
-          echo -e "\nPublic Repositories: $(gh repo list ${{ github.repository_owner }} --visibility public --json name --jq length)" >> README.md
-          echo "Private Repositories: $(gh repo list ${{ github.repository_owner }} --visibility private --json name --jq length)" >> README.md
-          echo -e "Total Repositories: $(gh repo list ${{ github.repository_owner }} --json name --jq length)\n" >> README.md
-
       - name: Count lines of code
         run: |
-          echo "# Summary Report" > README.md
+          echo "# Summary Report" >> README.md
           echo "Compiled on $(date) with an automatic daily update. The comment count includes documentation, content, and code comments." >> README.md
           echo '```' >> README.md
           tokei ./repos | grep "Language" -A 1 | sed 's/Language/         /g' >> README.md
@@ -47,6 +39,14 @@ jobs:
           # Extract languages and format them
           tokei ./repos | grep -E '^[[:space:]]*[A-Za-z#]+[[:space:]]' | awk '{print $1}' | grep -v "Total" | grep -v "==" | grep -v "Language" | sort | tr '\n' ',' | sed 's/,/, /g' | sed 's/, $//' >> README.md
           echo -e "\n" >> README.md
+
+      - name: Count repositories
+        run: |
+          echo -e "\n### Repository Count" >> README.md
+          echo "===============================================================================" >> README.md
+          echo -e "\nPublic Repositories: $(gh repo list ${{ github.repository_owner }} --visibility public --json name --jq length)" >> README.md
+          echo "Private Repositories: $(gh repo list ${{ github.repository_owner }} --visibility private --json name --jq length)" >> README.md
+          echo -e "Total Repositories: $(gh repo list ${{ github.repository_owner }} --json name --jq length)\n" >> README.md
 
       - name: Update report
         run: |
