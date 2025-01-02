@@ -27,7 +27,8 @@ jobs:
 
       - name: Count lines of code
         run: |
-          echo "# Summary Report" >> README.md
+          # Create new README.md or clear existing one
+          echo "# Summary Report" > README.md
           echo "Compiled on $(date) with an automatic daily update. The comment count includes documentation, content, and code comments." >> README.md
           echo '```' >> README.md
           tokei ./repos | grep "Language" -A 1 | sed 's/Language/         /g' >> README.md
