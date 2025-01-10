@@ -32,7 +32,7 @@ jobs:
         run: |
           # Create new README.md or clear existing one
           echo "# Summary Report" > README.md
-          echo "Compiled on $(date) with an automatic daily update. The comment count includes documentation, content, and code comments." >> README.md
+          echo "Lines of code summary report compiled on $(date) with an automatic daily update. The comment count includes documentation, content, and code comments." >> README.md
           echo '```' >> README.md
           tokei ./repos | grep "Language" -A 1 | sed 's/Language/         /g' >> README.md
           tokei ./repos | tail -n 3 >> README.md
@@ -41,7 +41,7 @@ jobs:
           echo "===============================================================================" >> README.md
           echo -e "\n" >> README.md
           # Extract languages and format them
-          tokei ./repos | grep -E '^[[:space:]]*[A-Za-z#]+[[:space:]]' | awk '{print $1}' | grep -v "Total" | grep -v "==" | grep -v "Language" | sort | tr '\n' ',' | sed 's/,/, /g' | sed 's/, $//' >> README.md
+          tokei ./repos | grep -E '^[[:space:]]*[A-Za-z+#]+[[:space:]]' | awk '{print $1}' | grep -v "Total" | grep -v "==" | grep -v "Language" | sort -u | tr '\n' ',' | sed 's/,/, /g' | sed 's/, $//' >> README.md
           echo -e "\n" >> README.md
 
       - name: Count repositories
