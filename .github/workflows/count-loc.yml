@@ -37,12 +37,12 @@ jobs:
           tokei ./repos | grep "Language" -A 1 | sed 's/Language/         /g' >> README.md
           tokei ./repos | tail -n 3 >> README.md
           echo '```' >> README.md
-          echo -e "\n### Languages Used" >> README.md
-          echo "===============================================================================" >> README.md
-          echo -e "\n" >> README.md
+          # echo -e "\n### Languages Used" >> README.md
+          # echo "===============================================================================" >> README.md
+          # echo -e "\n" >> README.md
           # Extract languages and format them
-          tokei ./repos | grep -E '^[[:space:]]*[A-Za-z+#][A-Za-z+#]*[[:space:]]' | awk '{print $1}' | grep -v "Total" | grep -v "==" | grep -v "Language" | sort -u | tr '\n' ',' | sed 's/,/, /g' | sed 's/, $//' >> README.md
-          echo -e "\n" >> README.md
+          # tokei ./repos | grep -E '^[[:space:]]*[A-Za-z+#][A-Za-z+#]*[[:space:]]' | awk '{print $1}' | grep -v "Total" | grep -v "==" | grep -v "Language" | sort -u | tr '\n' ',' | sed 's/,/, /g' | sed 's/, $//' >> README.md
+          # echo -e "\n" >> README.md
 
       - name: Count repositories
         run: |
