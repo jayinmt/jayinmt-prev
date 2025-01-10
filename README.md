@@ -1,5 +1,5 @@
 # Summary Report
-Lines of code summary report compiled on Fri Jan 10 16:59:10 UTC 2025 with an automatic daily update. The comment count includes documentation, content, and code comments.
+Lines of code summary report compiled on Fri Jan 10 17:05:13 UTC 2025 with an automatic daily update. The comment count includes documentation, content, and code comments.
 ```
                       Files        Lines         Code     Comments       Blanks
 ===============================================================================
@@ -7,13 +7,6 @@ Lines of code summary report compiled on Fri Jan 10 16:59:10 UTC 2025 with an au
  Total                3076       506814       369227       110604        26983
 ===============================================================================
 ```
-
-### Languages Used
-===============================================================================
-
-
-C++, CSS, Clojure, Elixir, Go, HTML, JSON, JSX, JavaScript, Kotlin, Makefile, Markdown, Plain, Python, SVG, Sass, Scala, Shell, Solidity, Swift, TSX, TypeScript
-
 
 ### Repository Count
 ===============================================================================
